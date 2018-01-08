@@ -18,13 +18,14 @@ In order to install Antergos on my Thinkpad, I first created and verified (md5) 
 
 In order to verify the ISO you downloaded before creating a Live USB, generate and compare the md5 of the ISO.  Here's how to do that via a shell in Linx:
 
-```
+```shell
 
 md5sum your-iso-name.iso
 
 ```
 
 ### Create Live USB
+
 The Antergos website provides a [HOW TO for creating a Live USB](https://antergos.com/wiki/article/create-a-working-live-usb/) that I found helpful.  Although it is straight forward to create the Live USB using Bash, I found using their recommended GUI for Linux called [Etcher](https://etcher.io/) a pleasure, so I'd recommend using it.
 
 ## Installation
@@ -53,7 +54,7 @@ Immediately (more on this later), I recommend using the standard package manager
 
 Here's how to do a **system update** via pacman in the Bash shell:
 
-```Bash
+```shell
 # -Syu:
 # S is Synchronize packages
 # y is download a fresh copy of the master pkg db
@@ -62,7 +63,9 @@ sudo pacman -Syu
 
 ```
 
-#### pacman
+#### [pacman](https://wiki.archlinux.org/index.php/pacman)
+
+The package management command line application that comes with Antergos.
 
 ##### Common pacman commands:
 
@@ -70,7 +73,7 @@ sudo pacman -Syu
 * ```sudo pacman -Si``` -- retrieves information for the given package
 * ```sudo pacman -S``` -- installs the given package
 * ```sudo pacman -Sc``` -- removes all of the cached packages  from ```/var/cache/pacman/pkg```
-*
+
 
 * ```sudo pacman -Q``` -- lists all of the installed packages
 * ```sudo pacman -Qs``` -- retrieves information for all of the installed packages
@@ -82,25 +85,213 @@ sudo pacman -Syu
 
 #### yaourt
 
+[yaourt]() --
 
+yaourt is the AUR helper installed by default in Antergos, so it is a convenient method, besides using the Software Install GUI, to search for and install AUR packages.
 
 #### pacaur
 
+[pacaur]() --
+
+pacuar is another AUR helper that I installed more recently to search for and install AUR packages.
 
 
+### GUI Settings
 
-#### Here are some great package management (including AUR) references:
+#### Settings Application
 
-* [Pacman](https://wiki.archlinux.org/index.php/pacman) -- this is the official Arch Linux page on Pacman.
+Here are specific changes I made to Gnome via the **Settings** application:
+
+* In Privacy:
+  - Turned on Location Services (?)
+  - Turned on Purge Trash & Temporary Files (?)
+* In Devices:
+  - Keyboard: Added a custom Keyboard shortcut for launching a terminal (Shift + Ctrl + T)
+  - Mouse & Touchpad: Turned off Natural Scrolling for the Touchpad
+  - Displays: Adjusted external monitors Resolution (2560 x 1440); I'm running 4k 28" Samsung monitors
+* In Details:
+  - Date & Time: Adjusted Time Format to AM/PM, modified Time Zone / enabled Automatic for Date & Time, Time Zone
+  - Users: Selected an image for my user
+
+#### Tweaks Application
+
+Here are the changes I made to Gnome via the **Tweaks** application:
+
+* Appearance:
+  - Themes:
+    - Applications: Numix-Frost
+    - Cursor: Adwaita (default)
+    - Icons: Numix-Circle*
+* Keyboard & Mouse
+  - Mouse: Pointer Location on
+* Top Bar
+  - Battery Percentage on
+  - Date on
+
+* = If I remember correctly, the Adwaita theme and Numix-Circle icons are NOT available in Antergos, so you'll need to download those.
+
+#### Dash to Dock Panel
+
+Here are the changes I made to the **Dash to Dock** panel in Gnome:
+
+* Decreased the Icon size limit -- between 32 and 48
+* Turned off setting to use built-in theme; styled on my own
+  - Shrink the dash on
+  - Show windows counter indicators (yellow dot)
+  - Customize the dash color (similar to original)
+  - Customize opacity to 60%
 
 
-### Antergos Settings
+### System Configuration
+
+Here I've captured any system configuration I did to get my system to run faster, better, safer, more efficiently, etc.
+
+#### Power Management
+
+I'm using several tools to manage power in order to reduce heat, improve battery life, etc..
+
+[TLP – Linux Advanced Power Management](http://linrunner.de/en/tlp/tlp.html) -- this is an important power management application to install especially for those runing Linux on a laptop.
+
+I'm not going to cover the installation and configuration of this tool -- their web site already covers it very well:
+
+* [Installation](http://linrunner.de/en/tlp/docs/tlp-linux-advanced-power-management.html) -- here are the installation instructions -- see the section on Arch Linux for instructions on installing in on Antergos.
+
+**TL;DR:**
+
+* Install the following packages:  tlp, tlp-rdw
+* Install these additionally if you are on a Thinkpad:  tp_smapi, acpi_call*
+  - Note: you only need 1 of these packages -- depends upon your Thinkpad hardware.
+  - I installed acpi_call as its the correct module for the Thinkpad T440p
+* ```sudo tlp start``` -- to start the tlp service without restart (if you followed the setup correctly it should automatically start when your system starts up the next time)
+* ```sudo tlp-stat -s``` -- to verify that tlp is working correctly
+* ```sudo tlp-stat``` -- produce the full report
+
+#### Antivirus
+
+I'm using ClamAV and ClamTK (GUI) for antivirus protection on my Antergos system.
+
+[ClamAV](https://wiki.archlinux.org/index.php/ClamAV) -- this is the official Arch Linux page that covers the basics regarding ClamAV.
+
+I don't currently have it setup to do automatic scans yet.
+
+Here are a few steps to keeping it up to date (definitions), etc.:
+
+* ```freshclam``` -- update virus definitions via the bash shell
+* ```systemctl start clamd.service``` -- start the service via the bash shell
+* ```curl https://www.eicar.org/download/eicar.com.txt | clamscan -``` -- test to ensure everything is setup correctly
+  - Expected output -- ```stdin: Eicar-Test-Signature FOUND```
+* ```clamtk``` -- launches the GUI for ClamAV
+
+I've just scratched the surface here - it appears that you can include additional siguratures from other repositories to broaden the number and type of signatures that ClamAV is aware of.
+
+#### Hardware information
+
+I've used a few different tools in order to get detailed information about things like the hard drive, memory, battery, etc..
+
+* lshw -- command line tool that lists detailed information about the hardware of your machine.
+* hardinfo -- a GUI tool that provides detailed hardware information.
+* i-nex -- yet another GUI tool that provides detailed hardware information.
+* hwinfo -- another hardware information command line tool
+
+#### System information
+
+* systemctl -- command line tool for interogating system information (systemd)
+
+Here are some common command line entries you can make using systemctl:
+
+```shell
+
+# lists all of the "units"
+systemctl
+
+# lists current status
+systemctl status
+
+# lists any failures (units)
+systemctl --failed
+
+# start / restart / stop a unit
+systemctl start <someunit>
+
+systemctl restart <someunit>
+
+systemctl stop <someunit>
+
+# reboot the system
+systemctl reboot
+
+# power down the system
+systemctl poweroff
 
 
+```
+
+#### Overall
+
+[General recommendations](https://wiki.archlinux.org/index.php/General_recommendations) -- this is the "bible" from the Arch Linux site.  I have to admit I've only read a few of the sections from this large repository of articles that cover a vast number of topics regarding Linux in general:  System administration, Package management, Power management (especially important for a laptop), Networking, Input devices, GUI/apearance, etc.
 
 ### Software
 
+Here is a list of all of the software packages, from system tools to audio and video applications, that I've installed on Antergos so far.
 
+#### Applications
 
+* **Atom** -- great all purpose text editor
+* **Visual Studio Code(AUR)** -- great JavaScript editor/all purpose text editor
+  - As a developer who uses Windows by day, and MacOS and Linux at home, it's nice to have a cross platform editor that more or less behaes the same across all three environments.
+* **BleachBit** -- tool for securely removing files, freeing up disk space, etc.
+* **Chromium** -- open source browser from Google
+* **Chrome** -- closed source version of Chromium from Google
+* **Evolution** -- great email client
+  - ```esw``` -- used to connect Evolution to Office365/Exchange email servers
+  - Also made use of Online Accounts section in Gnome to setup Office365 account once ```esw``` was installed
+* **ClamAV** -- good antivirus command line tool
+* **ClamTK** -- good GUI for ClamAV antivirus tool
+* **Etcher** -- great USB creation tool; great for burning a Live ISO to a USB flash drive
+* **Franz** -- intersting application for accessing several social media accounts via a single GUI
+* **GVim** -- great GUI version of the venerable ```vim``` available in the Bash shell
+* **I-Nex** -- a GUI tool that provides detailed hardware information
+* **LibreOffice** -- strong, open source MS Office style suite of productivity software
+* **MegaSync(AUR)** -- Dropbox like cloud storage service available via a GUI
+* **Meld** -- great diff and merge GUI tool; I use this with git as my ```difftool``` and ```mergetool```
+* **PSensors** -- similar to XSensors, a GUI for viewing the current temperatures of various components in the system
+* **SmartGit** -- great cross platform git GUI
+* **Spotify (AUR)** -- great streaming music GUI
+* **Stacer(AUR)** -- nice GUI utility for examining overall system performance
+* **VLC** -- great media player
+* **Xmind** -- nice mind mapping application
+* **XSensors** -- nice GUI for viewing the current temperatures of the core and CPU
 
-* [ArchLinux.org General recommendations](https://wiki.archlinux.org/index.php/General_recommendations) -- this is the "bible" from the Arch Linux site.  I have to admit I've only read a few of the sections from this large repository of articles that cover a vast number of topics regarding Linux in general:  System administration, Package management, Power management (especially important for a laptop), Networking, Input devices, GUI/apearance, etc.
+#### GUI
+
+* **adwaita-icon-theme**
+* **numix-icon-theme**
+* **numix-icon-theme-circle**
+* **numix-icon-theme-square**
+* **antergos-wallpapers**
+* **antergos-wallpapers-deepin**
+* **antergos-wallpapers-extra**
+
+#### Tools
+
+* **blueman-manager** -- good, additional bluetooth device management GUI
+* **brightness-controller** -- great little utility GUI for controlling your monitors' brightness
+* **ews** -- Exchange Web Services (evolution-ews) -- for accessing exchange / Office 365 servers from Evolution
+* **fish** -- colorized, auto-suggesting, etc. shell; nice to use in addition to Bash
+* **fsearch** -- GUI file system search tool
+* **git** -- source control command line tools
+* **hardinfo** -- a GUI tool that provides detailed hardware information
+* **hwinfo** -- another hardware information command line tool
+* **linux-headers** -- ?? installed in order to support the install of another package -- can't remember which one ??
+* **linux-api-headers** -- ?? installed in order to support the install of another package -- can't remember which one ??
+* **lm_sensors** -- monitoring library - provides access to things like CPU temp, fan speeds, etc.
+*
+* **lshw** -- command line tool that lists detailed information about the hardware of your machine.
+* **NodeJS** -- stand alone JavaScript engine
+* **npm** -- node package manager - companion command line tool for managing node packages
+* **tlp** -- power management for linux; helps optimize battery life, facilitates reporting on some hardware statistics
+* **iw** -- command line based wireless device configuration utility; used / installed at the same time as tlp
+* **smartmontools** -- used by tlp to emit SMART hard drive statistics(?)
+* **thermald** -- linux thermal daemon (Intel CPUs)
+* **xbacklight** -- command line utility for adjusting the backlight (brightness) of your monitors
+* **x86_Energy_Perf_Policy** -- ??

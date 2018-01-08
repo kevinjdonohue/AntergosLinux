@@ -55,6 +55,7 @@ Immediately (more on this later), I recommend using the standard package manager
 Here's how to do a **system update** via pacman in the Bash shell:
 
 ```shell
+
 # -Syu:
 # S is Synchronize packages
 # y is download a fresh copy of the master pkg db
@@ -83,18 +84,17 @@ The package management command line application that comes with Antergos.
 * ```sudo pacman -R``` -- removes the given package; leaves behind all dependencies
 * ```sudo pacman -Rs``` -- removes the given package and it's dependencies (not required by any other pkg)
 
-#### yaourt
-
-[yaourt]() --
+#### [yaourt](https://archlinux.fr/yaourt-en)
 
 yaourt is the AUR helper installed by default in Antergos, so it is a convenient method, besides using the Software Install GUI, to search for and install AUR packages.
 
-#### pacaur
+yaourt, as a wrapper around pacman, provides the same arguments as above.
 
-[pacaur]() --
+#### **pacaur**
 
 pacuar is another AUR helper that I installed more recently to search for and install AUR packages.
 
+Just as yaourt is a wrapper around pacman, so too is pacaur a wrapper around pacman with additional support for AUR.  So, the same rules apply -- the same arguments above will work with pacaur as they do with pacman and yaourt.
 
 ### GUI Settings
 
@@ -226,15 +226,25 @@ systemctl poweroff
 
 ```
 
+===NEED MORE HERE===
+
+There are lots of of other *ctl command line tools necessary for system administration.
+
+e.g. journalctl
+
+===NEED MORE HERE===
+
 #### Overall
 
 [General recommendations](https://wiki.archlinux.org/index.php/General_recommendations) -- this is the "bible" from the Arch Linux site.  I have to admit I've only read a few of the sections from this large repository of articles that cover a vast number of topics regarding Linux in general:  System administration, Package management, Power management (especially important for a laptop), Networking, Input devices, GUI/apearance, etc.
 
 ### Software
 
-Here is a list of all of the software packages, from system tools to audio and video applications, that I've installed on Antergos so far.
+Here is a list of all of the software packages, from system tools to audio and video applications, that I've installed on Antergos.
 
 #### Applications
+
+Here, in no particular order, are the applications that I have installed.
 
 * **Atom** -- great all purpose text editor
 * **Visual Studio Code(AUR)** -- great JavaScript editor/all purpose text editor
@@ -249,6 +259,7 @@ Here is a list of all of the software packages, from system tools to audio and v
 * **ClamTK** -- good GUI for ClamAV antivirus tool
 * **Etcher** -- great USB creation tool; great for burning a Live ISO to a USB flash drive
 * **Franz** -- intersting application for accessing several social media accounts via a single GUI
+* **FSearch** -- GUI file system search tool
 * **GVim** -- great GUI version of the venerable ```vim``` available in the Bash shell
 * **I-Nex** -- a GUI tool that provides detailed hardware information
 * **LibreOffice** -- strong, open source MS Office style suite of productivity software
@@ -262,26 +273,19 @@ Here is a list of all of the software packages, from system tools to audio and v
 * **Xmind** -- nice mind mapping application
 * **XSensors** -- nice GUI for viewing the current temperatures of the core and CPU
 
-#### GUI
-
-* **adwaita-icon-theme**
-* **numix-icon-theme**
-* **numix-icon-theme-circle**
-* **numix-icon-theme-square**
-* **antergos-wallpapers**
-* **antergos-wallpapers-deepin**
-* **antergos-wallpapers-extra**
-
 #### Tools
+
+These "tools", much like the applications above, are ones that I've installed.  I'm loosely defining "tools" to be applications that are primarily or solely accessed via the command line (Bash) and typically used for system administration-type tasks -- power management, bluetooth management, etc.
 
 * **blueman-manager** -- good, additional bluetooth device management GUI
 * **brightness-controller** -- great little utility GUI for controlling your monitors' brightness
+* **dotnet-host, dotnet-runtime <ver>, dotnet-sdk-<ver>** -- .net core 2.0 libraries for writing .net core apps on linux
 * **ews** -- Exchange Web Services (evolution-ews) -- for accessing exchange / Office 365 servers from Evolution
 * **fish** -- colorized, auto-suggesting, etc. shell; nice to use in addition to Bash
-* **fsearch** -- GUI file system search tool
 * **git** -- source control command line tools
 * **hardinfo** -- a GUI tool that provides detailed hardware information
 * **hwinfo** -- another hardware information command line tool
+* **JDK 8** -- ?? not sure but something on the system required this be installed ...??
 * **linux-headers** -- ?? installed in order to support the install of another package -- can't remember which one ??
 * **linux-api-headers** -- ?? installed in order to support the install of another package -- can't remember which one ??
 * **lm_sensors** -- monitoring library - provides access to things like CPU temp, fan speeds, etc.
@@ -289,9 +293,22 @@ Here is a list of all of the software packages, from system tools to audio and v
 * **lshw** -- command line tool that lists detailed information about the hardware of your machine.
 * **NodeJS** -- stand alone JavaScript engine
 * **npm** -- node package manager - companion command line tool for managing node packages
+* **powertop** -- a tool to diagnose power consumption issues; power management
 * **tlp** -- power management for linux; helps optimize battery life, facilitates reporting on some hardware statistics
 * **iw** -- command line based wireless device configuration utility; used / installed at the same time as tlp
 * **smartmontools** -- used by tlp to emit SMART hard drive statistics(?)
 * **thermald** -- linux thermal daemon (Intel CPUs)
 * **xbacklight** -- command line utility for adjusting the backlight (brightness) of your monitors
 * **x86_Energy_Perf_Policy** -- ??
+
+#### Themes & Icons
+
+I'm not sure whether this list is accurate or complete, but these are the packages that I believe I installed in order to transform the default Gnome desktop experience into something I liked better.
+
+* **adwaita-icon-theme**
+* **numix-icon-theme**
+* **numix-icon-theme-circle** -- favorite set of icons so far -- circular version of the numix icons
+* **numix-icon-theme-square**
+* **antergos-wallpapers**
+* **antergos-wallpapers-deepin**
+* **antergos-wallpapers-extra**

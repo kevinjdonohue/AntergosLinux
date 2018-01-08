@@ -4143,7 +4143,7 @@ Groups          : base
 Provides        : gcc-libs-multilib
 Depends On      : glibc>=2.26
 Optional Deps   : None
-Required By     : aspell  cdrdao  clucene  crypto++  db  dotnet-host  dotnet-runtime  double-conversion  doxygen  dvd+rw-tools  exempi  exiv2  fftw  fish  flac  gc  gcc  gettext  gmp  gnutls  gptfdisk  graphite  groff  hunspell  icu  js  js52  jsoncpp  ladspa  libcdio  libebml  libelf  libgme  libmodplug  libmp4v2  libproxy  libpst  libreoffice-fresh  libsidplay  libsigc++  libsoxr  libvoikko  libvpx  libwpd  llvm-libs  lshw  mjpegtools  ncurses  pcre  pcre2  pepper-flash  poppler  protobuf  re2  schroedinger  smartmontools  snappy  soundtouch  splix  swig  thin-provisioning-tools  unrar  v4l-utils  vid.stab  visual-studio-code-bin  webrtc-audio-processing  x265  zeromq  zita-alsa-pcmi  zita-resampler
+Required By     : aspell  cdrdao  clucene  crypto++  db  dotnet-host  dotnet-runtime  double-conversion  doxygen  dvd+rw-tools  exempi  exiv2  fftw  fish  flac  gc  gcc  gettext  gmp  gnutls  gptfdisk  graphite  groff  hunspell  icu  js  js52  jsoncpp  ladspa  libcdio  libebml  libelf  libgme  libmodplug  libmp4v2  libproxy  libpst  libreoffice-fresh  libsidplay  libsigc++  libsoxr  libvoikko  libvpx  libwpd  llvm-libs  lshw  mjpegtools  ncurses  pcre  pcre2  pepper-flash  poppler  powertop  protobuf  re2  schroedinger  smartmontools  snappy  soundtouch  splix  swig  thin-provisioning-tools  unrar  v4l-utils  vid.stab  visual-studio-code-bin  webrtc-audio-processing  x265  zeromq  zita-alsa-pcmi  zita-resampler
 Optional For    : None
 Conflicts With  : None
 Replaces        : gcc-libs-multilib
@@ -10998,7 +10998,7 @@ Groups          : None
 Provides        : None
 Depends On      : glibc
 Optional Deps   : None
-Required By     : crda  iw  libpcap  libteam  net-snmp  wpa_supplicant
+Required By     : crda  iw  libpcap  libteam  net-snmp  powertop  wpa_supplicant
 Optional For    : None
 Conflicts With  : None
 Replaces        : None
@@ -14945,7 +14945,7 @@ Groups          : None
 Provides        : libncurses++w.so=6-64  libformw.so=6-64  libmenuw.so=6-64  libpanelw.so=6-64  libncursesw.so=6-64  libncursesw.so
 Depends On      : glibc  gcc-libs
 Optional Deps   : None
-Required By     : alsa-utils  aspell  bash  fish  gptfdisk  guile  lame  less  libcaca  libcdio  libedit  libxml2  llvm-libs  nano  pinentry  procps-ng  psmisc  readline  texinfo  vi
+Required By     : alsa-utils  aspell  bash  fish  gptfdisk  guile  lame  less  libcaca  libcdio  libedit  libxml2  llvm-libs  nano  pinentry  powertop  procps-ng  psmisc  readline  texinfo  vi
 Optional For    : vlc
 Conflicts With  : None
 Replaces        : None
@@ -16108,7 +16108,7 @@ Groups          : base
 Provides        : None
 Depends On      : glibc  hwids  kmod
 Optional Deps   : None
-Required By     : alsa-utils  chromium  efibootmgr  net-snmp  tlp
+Required By     : alsa-utils  chromium  efibootmgr  net-snmp  powertop  tlp
 Optional For    : None
 Conflicts With  : None
 Replaces        : None
@@ -17133,6 +17133,28 @@ Install Date    : Wed 20 Dec 2017 09:47:54 PM PST
 Install Reason  : Installed as a dependency for another package
 Install Script  : No
 Validated By    : SHA-256 Sum
+
+Name            : powertop
+Version         : 2.9-1
+Description     : A tool to diagnose issues with power consumption and power management
+Architecture    : x86_64
+URL             : https://01.org/powertop/
+Licenses        : GPL2
+Groups          : None
+Provides        : None
+Depends On      : gcc-libs  libnl  ncurses  pciutils
+Optional Deps   : None
+Required By     : None
+Optional For    : None
+Conflicts With  : None
+Replaces        : None
+Installed Size  : 652.00 KiB
+Packager        : Jaroslav Lichtblau <svetlemodry@archlinux.org>
+Build Date      : Tue 04 Apr 2017 11:44:53 AM PDT
+Install Date    : Sun 07 Jan 2018 11:23:33 PM PST
+Install Reason  : Explicitly installed
+Install Script  : No
+Validated By    : Signature
 
 Name            : ppp
 Version         : 2.4.7-4

@@ -1538,6 +1538,8 @@ local/poppler-glib 0.61.1-1
     Poppler glib bindings
 local/popt 1.16-9
     A commandline option parser
+local/powertop 2.9-1
+    A tool to diagnose issues with power consumption and power management
 local/ppp 2.4.7-4
     A daemon which implements the Point-to-Point Protocol for dial-up networking
 local/pptpclient 1.9.0-1

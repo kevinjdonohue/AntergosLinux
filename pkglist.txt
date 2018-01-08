@@ -768,6 +768,7 @@ poppler 0.61.1-1
 poppler-data 0.4.8-1
 poppler-glib 0.61.1-1
 popt 1.16-9
+powertop 2.9-1
 ppp 2.4.7-4
 pptpclient 1.9.0-1
 procps-ng 3.3.12-2

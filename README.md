@@ -116,7 +116,6 @@ Here are the changes I made to Gnome via the **Tweaks** application:
 * Appearance:
   * Themes:
     * Applications: Numix-Frost
-    * Cursor: Adwaita (default)
     * Icons: Numix-Circle*
 * Keyboard & Mouse
   * Mouse: Pointer Location on
@@ -124,13 +123,11 @@ Here are the changes I made to Gnome via the **Tweaks** application:
   * Battery Percentage on
   * Date on
 
-* = If I remember correctly, the Adwaita theme and Numix-Circle icons are NOT available in Antergos, so you'll need to download those.
-
 #### Dash to Dock Panel
 
 Here are the changes I made to the **Dash to Dock** panel in Gnome:
 
-* Decreased the Icon size limit -- between 32 and 48
+* Decreased the Icon size limit to 32
 * Turned off setting to use built-in theme; styled on my own
   * Shrink the dash on
   * Show windows counter indicators (yellow dot)
@@ -145,13 +142,13 @@ Here I've captured any system configuration I did to get my system to run faster
 
 I'm using several tools to manage power in order to reduce heat, improve battery life, etc..
 
-[TLP – Linux Advanced Power Management](http://linrunner.de/en/tlp/tlp.html) -- this is an important power management application to install especially for those runing Linux on a laptop.
+[TLP – Linux Advanced Power Management](http://linrunner.de/en/tlp/tlp.html) -- this is an important power management application to install especially for those running Linux on a laptop.
 
 I'm not going to cover the installation and configuration of this tool -- their web site already covers it very well:
 
 * [Installation](http://linrunner.de/en/tlp/docs/tlp-linux-advanced-power-management.html) -- here are the installation instructions -- see the section on Arch Linux for instructions on installing in on Antergos.
 
-**TL;DR:**
+#### TL;DR
 
 * Install the following packages:  tlp, tlp-rdw
 * Install these additionally if you are on a Thinkpad:  acpi_call or tp_smapi
@@ -190,36 +187,23 @@ I've used a few different tools in order to get detailed information about thing
 
 #### System information
 
-* systemctl -- command line tool for interrogating system information (systemd)
+```bash
+
+# command line tool for interrogating system information (systemd)
+systemctl
+
+```
 
 Here are some common command line entries you can make using systemctl:
 
-```shell
-
-# lists all of the "units"
-systemctl
-
-# lists current status
-systemctl status
-
-# lists any failures (units)
-systemctl --failed
-
-# start / restart / stop a unit
-systemctl start <someunit>
-
-systemctl restart <someunit>
-
-systemctl stop <someunit>
-
-# reboot the system
-systemctl reboot
-
-# power down the system
-systemctl poweroff
-
-
-```
+* ```systemctl``` -- lists all of the "units"
+* ```systemctl status``` -- lists current status 
+* ```systemctl --failed``` -- lists any failures (units)
+* ```systemctl start some unit``` --  start / restart / stop a unit
+* ```systemctl restart some unit```
+* ```systemctl stop some unit```
+* ```systemctl reboot``` -- reboot the system 
+* ```systemctl poweroff``` -- power down the system
 
 ===NEED MORE HERE===
 

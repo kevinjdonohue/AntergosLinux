@@ -6,17 +6,17 @@ I'm going to use this README to capture the steps I took to get Antergos (re)ins
 
 As a novice to installing and configuring Linux, I thought I'd capture my experience of installing Antergos so that when I need to do another installation, I'll have some notes handy.
 
-Although I'm referencing Antergos Linux specifically in this guide, my guess is that many of the steps, tools, etc. may be relevant to installing other distros.
+Although I'm referencing Antergos Linux specifically in this guide, my guess is that many of the steps, tools, etc. may be relevant to installing other distributions.
 
 ## Preparing for the install
 
 1. Download Live ISO
-2. Verify md5 of ISO
-3. Use Bash or Etcher to create a bootable USB from the ISO
+1. Verify md5 of ISO
+1. Use Bash or Etcher to create a boot-able USB from the ISO
 
 In order to install Antergos on my Thinkpad, I first created and verified (md5) a fresh copy of the [Antergos Live ISO](https://antergos.com/download/antergos-live-iso/) on a USB flash drive.
 
-In order to verify the ISO you downloaded before creating a Live USB, generate and compare the md5 of the ISO.  Here's how to do that via a shell in Linx:
+In order to verify the ISO you downloaded before creating a Live USB, generate and compare the md5 of the ISO.  Here's how to do that via a shell in Linux:
 
 ```shell
 
@@ -32,11 +32,11 @@ The Antergos website provides a [HOW TO for creating a Live USB](https://antergo
 
 Fortunately, there are already a lot of good articles on the installation process, so I'm not going to create yet another installation guide -- I'm just going to point out some great articles and references to checkout (along with a little commentary here and there).
 
-* [How To Install Antergos Linx](https://itsfoss.com/install-antergos-linux/) -- this is one of the first sources I used to learn about how to perform linux installations period.  Nice concise article on how to install Antergos.
+* [How To Install Antergos Linux](https://itsfoss.com/install-antergos-linux/) -- this is one of the first sources I used to learn about how to perform linux installations period.  Nice concise article on how to install Antergos.
 
 * [Antergos installation guide with screenshots](https://www.ostechnix.com/antergos-installation-guide-screenshots/) -- another good step-by-step installation guide.
 
-* [How to install Antergos 2016 in your PC](http://www.fosslinux.com/1266/how-to-install-antergos-2016-in-your-pc.htm) -- interesting installation guide that goes into more detail regarding creating partitions on your harddrive prior to installing linux.  Check out [this article](http://www.fosslinux.com/1246/20-steps-to-prepare-your-pc-for-linux-installation.htm) for more details.  Note:  I did NOT follow this -- I'm unsure whether it is necessary to pre-create the partitions by hand, so I ignored this advice?
+* [How to install Antergos 2016 in your PC](http://www.fosslinux.com/1266/how-to-install-antergos-2016-in-your-pc.htm) -- interesting installation guide that goes into more detail regarding creating partitions on your hard-drive prior to installing linux.  Check out [this article](http://www.fosslinux.com/1246/20-steps-to-prepare-your-pc-for-linux-installation.htm) for more details.  Note:  I did NOT follow this -- I'm unsure whether it is necessary to pre-create the partitions by hand, so I ignored this advice?
 
 * [Installing Antergos](https://antergos.com/wiki/install/installing-antergos-2/) -- the official installation page on the Antergos site.
 
@@ -59,7 +59,7 @@ Here's how to do a **system update** via pacman in the Bash shell:
 # -Syu:
 # S is Synchronize packages
 # y is download a fresh copy of the master pkg db
-# u is upgrades all pkgs that are out of date
+# u is upgrades all packages that are out of date
 sudo pacman -Syu
 
 ```
@@ -68,19 +68,15 @@ sudo pacman -Syu
 
 The package management command line application that comes with Antergos.
 
-##### Common pacman commands:
+##### Common pacman commands
 
 * ```sudo pacman -Ss``` -- search for the given package
 * ```sudo pacman -Si``` -- retrieves information for the given package
 * ```sudo pacman -S``` -- installs the given package
 * ```sudo pacman -Sc``` -- removes all of the cached packages  from ```/var/cache/pacman/pkg```
-
-
 * ```sudo pacman -Q``` -- lists all of the installed packages
 * ```sudo pacman -Qs``` -- retrieves information for all of the installed packages
 * ```sudo pacman -Qi``` -- retrieves detailed information for all of the installed packages
-
-
 * ```sudo pacman -R``` -- removes the given package; leaves behind all dependencies
 * ```sudo pacman -Rs``` -- removes the given package and it's dependencies (not required by any other pkg)
 
@@ -92,7 +88,7 @@ yaourt, as a wrapper around pacman, provides the same arguments as above.
 
 #### **pacaur**
 
-pacuar is another AUR helper that I installed more recently to search for and install AUR packages.
+pacaur is another AUR helper that I installed more recently to search for and install AUR packages.
 
 Just as yaourt is a wrapper around pacman, so too is pacaur a wrapper around pacman with additional support for AUR.  So, the same rules apply -- the same arguments above will work with pacaur as they do with pacman and yaourt.
 
@@ -103,30 +99,30 @@ Just as yaourt is a wrapper around pacman, so too is pacaur a wrapper around pac
 Here are specific changes I made to Gnome via the **Settings** application:
 
 * In Privacy:
-  - Turned on Location Services (?)
-  - Turned on Purge Trash & Temporary Files (?)
+  * Turned on Location Services (?)
+  * Turned on Purge Trash & Temporary Files (?)
 * In Devices:
-  - Keyboard: Added a custom Keyboard shortcut for launching a terminal (Shift + Ctrl + T)
-  - Mouse & Touchpad: Turned off Natural Scrolling for the Touchpad
-  - Displays: Adjusted external monitors Resolution (2560 x 1440); I'm running 4k 28" Samsung monitors
+  * Keyboard: Added a custom Keyboard shortcut for launching a terminal (Shift + Ctrl + T)
+  * Mouse & Touchpad: Turned off Natural Scrolling for the Touchpad
+  * Displays: Adjusted external monitors Resolution (2560 x 1440); I'm running 4k 28" Samsung monitors
 * In Details:
-  - Date & Time: Adjusted Time Format to AM/PM, modified Time Zone / enabled Automatic for Date & Time, Time Zone
-  - Users: Selected an image for my user
+  * Date & Time: Adjusted Time Format to AM/PM, modified Time Zone / enabled Automatic for Date & Time, Time Zone
+  * Users: Selected an image for my user
 
 #### Tweaks Application
 
 Here are the changes I made to Gnome via the **Tweaks** application:
 
 * Appearance:
-  - Themes:
-    - Applications: Numix-Frost
-    - Cursor: Adwaita (default)
-    - Icons: Numix-Circle*
+  * Themes:
+    * Applications: Numix-Frost
+    * Cursor: Adwaita (default)
+    * Icons: Numix-Circle*
 * Keyboard & Mouse
-  - Mouse: Pointer Location on
+  * Mouse: Pointer Location on
 * Top Bar
-  - Battery Percentage on
-  - Date on
+  * Battery Percentage on
+  * Date on
 
 * = If I remember correctly, the Adwaita theme and Numix-Circle icons are NOT available in Antergos, so you'll need to download those.
 
@@ -136,11 +132,10 @@ Here are the changes I made to the **Dash to Dock** panel in Gnome:
 
 * Decreased the Icon size limit -- between 32 and 48
 * Turned off setting to use built-in theme; styled on my own
-  - Shrink the dash on
-  - Show windows counter indicators (yellow dot)
-  - Customize the dash color (similar to original)
-  - Customize opacity to 60%
-
+  * Shrink the dash on
+  * Show windows counter indicators (yellow dot)
+  * Customize the dash color (similar to original)
+  * Customize opacity to 60%
 
 ### System Configuration
 
@@ -159,9 +154,9 @@ I'm not going to cover the installation and configuration of this tool -- their 
 **TL;DR:**
 
 * Install the following packages:  tlp, tlp-rdw
-* Install these additionally if you are on a Thinkpad:  tp_smapi, acpi_call*
-  - Note: you only need 1 of these packages -- depends upon your Thinkpad hardware.
-  - I installed acpi_call as its the correct module for the Thinkpad T440p
+* Install these additionally if you are on a Thinkpad:  acpi_call or tp_smapi
+  * Note: you only need 1 of these packages -- depends upon your Thinkpad hardware.
+  * I installed acpi_call as its the correct module for the Thinkpad T440p
 * ```sudo tlp start``` -- to start the tlp service without restart (if you followed the setup correctly it should automatically start when your system starts up the next time)
 * ```sudo tlp-stat -s``` -- to verify that tlp is working correctly
 * ```sudo tlp-stat``` -- produce the full report
@@ -179,10 +174,10 @@ Here are a few steps to keeping it up to date (definitions), etc.:
 * ```freshclam``` -- update virus definitions via the bash shell
 * ```systemctl start clamd.service``` -- start the service via the bash shell
 * ```curl https://www.eicar.org/download/eicar.com.txt | clamscan -``` -- test to ensure everything is setup correctly
-  - Expected output -- ```stdin: Eicar-Test-Signature FOUND```
+  * Expected output -- ```stdin: Eicar-Test-Signature FOUND```
 * ```clamtk``` -- launches the GUI for ClamAV
 
-I've just scratched the surface here - it appears that you can include additional siguratures from other repositories to broaden the number and type of signatures that ClamAV is aware of.
+I've just scratched the surface here - it appears that you can include additional signatures from other repositories to broaden the number and type of signatures that ClamAV is aware of.
 
 #### Hardware information
 
@@ -195,7 +190,7 @@ I've used a few different tools in order to get detailed information about thing
 
 #### System information
 
-* systemctl -- command line tool for interogating system information (systemd)
+* systemctl -- command line tool for interrogating system information (systemd)
 
 Here are some common command line entries you can make using systemctl:
 
@@ -236,7 +231,7 @@ e.g. journalctl
 
 #### Overall
 
-[General recommendations](https://wiki.archlinux.org/index.php/General_recommendations) -- this is the "bible" from the Arch Linux site.  I have to admit I've only read a few of the sections from this large repository of articles that cover a vast number of topics regarding Linux in general:  System administration, Package management, Power management (especially important for a laptop), Networking, Input devices, GUI/apearance, etc.
+[General recommendations](https://wiki.archlinux.org/index.php/General_recommendations) -- this is the "bible" from the Arch Linux site.  I have to admit I've only read a few of the sections from this large repository of articles that cover a vast number of topics regarding Linux in general:  System administration, Package management, Power management (especially important for a laptop), Networking, Input devices, GUI/appearance, etc.
 
 ### Software
 
@@ -248,17 +243,17 @@ Here, in no particular order, are the applications that I have installed.
 
 * **Atom** -- great all purpose text editor
 * **Visual Studio Code(AUR)** -- great JavaScript editor/all purpose text editor
-  - As a developer who uses Windows by day, and MacOS and Linux at home, it's nice to have a cross platform editor that more or less behaes the same across all three environments.
+  * As a developer who uses Windows by day, and MacOS and Linux at home, it's nice to have a cross platform editor that more or less behaves the same across all three environments.
 * **BleachBit** -- tool for securely removing files, freeing up disk space, etc.
 * **Chromium** -- open source browser from Google
 * **Chrome** -- closed source version of Chromium from Google
 * **Evolution** -- great email client
-  - ```esw``` -- used to connect Evolution to Office365/Exchange email servers
-  - Also made use of Online Accounts section in Gnome to setup Office365 account once ```esw``` was installed
+  * ```esw``` -- used to connect Evolution to Office365/Exchange email servers
+  * Also made use of Online Accounts section in Gnome to setup Office365 account once ```esw``` was installed
 * **ClamAV** -- good antivirus command line tool
 * **ClamTK** -- good GUI for ClamAV antivirus tool
 * **Etcher** -- great USB creation tool; great for burning a Live ISO to a USB flash drive
-* **Franz** -- intersting application for accessing several social media accounts via a single GUI
+* **Franz** -- interesting application for accessing several social media accounts via a single GUI
 * **FSearch** -- GUI file system search tool
 * **GVim** -- great GUI version of the venerable ```vim``` available in the Bash shell
 * **I-Nex** -- a GUI tool that provides detailed hardware information
@@ -279,7 +274,7 @@ These "tools", much like the applications above, are ones that I've installed.  
 
 * **blueman-manager** -- good, additional bluetooth device management GUI
 * **brightness-controller** -- great little utility GUI for controlling your monitors' brightness
-* **dotnet-host, dotnet-runtime <ver>, dotnet-sdk-<ver>** -- .net core 2.0 libraries for writing .net core apps on linux
+* **dotnet-host, dotnet-runtime ver, dotnet-sdk-ver** -- .net core 2.0 libraries for writing .net core apps on linux
 * **ews** -- Exchange Web Services (evolution-ews) -- for accessing exchange / Office 365 servers from Evolution
 * **fish** -- colorized, auto-suggesting, etc. shell; nice to use in addition to Bash
 * **git** -- source control command line tools
@@ -289,7 +284,6 @@ These "tools", much like the applications above, are ones that I've installed.  
 * **linux-headers** -- ?? installed in order to support the install of another package -- can't remember which one ??
 * **linux-api-headers** -- ?? installed in order to support the install of another package -- can't remember which one ??
 * **lm_sensors** -- monitoring library - provides access to things like CPU temp, fan speeds, etc.
-*
 * **lshw** -- command line tool that lists detailed information about the hardware of your machine.
 * **NodeJS** -- stand alone JavaScript engine
 * **npm** -- node package manager - companion command line tool for managing node packages
@@ -298,17 +292,14 @@ These "tools", much like the applications above, are ones that I've installed.  
 * **iw** -- command line based wireless device configuration utility; used / installed at the same time as tlp
 * **smartmontools** -- used by tlp to emit SMART hard drive statistics(?)
 * **thermald** -- linux thermal daemon (Intel CPUs)
-* **xbacklight** -- command line utility for adjusting the backlight (brightness) of your monitors
+* **xbacklight** -- command line utility for adjusting the back light (brightness) of your monitors
 * **x86_Energy_Perf_Policy** -- ??
 
 #### Themes & Icons
 
-I'm not sure whether this list is accurate or complete, but these are the packages that I believe I installed in order to transform the default Gnome desktop experience into something I liked better.
+I installed the following icons and wallpapers in order to jazz up my desktop a bit.
 
-* **adwaita-icon-theme**
-* **numix-icon-theme**
-* **numix-icon-theme-circle** -- favorite set of icons so far -- circular version of the numix icons
-* **numix-icon-theme-square**
+* **numix-icon-theme-circle**
 * **antergos-wallpapers**
 * **antergos-wallpapers-deepin**
 * **antergos-wallpapers-extra**

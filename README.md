@@ -187,6 +187,8 @@ I've used a few different tools in order to get detailed information about thing
 
 #### System information
 
+See the Arch Linux official page on [systemd](https://wiki.archlinux.org/index.php/Systemd) for additional details.
+
 ```bash
 
 # command line tool for interrogating system information (systemd)
@@ -204,6 +206,13 @@ Here are some common command line entries you can make using systemctl:
 * ```systemctl stop some unit```
 * ```systemctl reboot``` -- reboot the system 
 * ```systemctl poweroff``` -- power down the system
+
+```bash
+
+# systemd logging system - called the journal
+journalctl
+
+```
 
 ===NEED MORE HERE===
 

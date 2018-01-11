@@ -16,31 +16,29 @@ Although I'm referencing Antergos Linux specifically in this guide, my guess is 
 
 In order to install Antergos on my Thinkpad, I first created and verified (md5) a fresh copy of the [Antergos Live ISO](https://antergos.com/download/antergos-live-iso/) on a USB flash drive.
 
-In order to verify the ISO you downloaded before creating a Live USB, generate and compare the md5 of the ISO.  Here's how to do that via a shell in Linux:
+In order to verify the ISO you downloaded before creating a Live USB, generate and compare the md5 of the ISO. Here's how to do that via a shell in Linux:
 
 ```shell
-
 md5sum your-iso-name.iso
-
 ```
 
 ### Create Live USB
 
-The Antergos website provides a [HOW TO for creating a Live USB](https://antergos.com/wiki/article/create-a-working-live-usb/) that I found helpful.  Although it is straight forward to create the Live USB using Bash, I found using their recommended GUI for Linux called [Etcher](https://etcher.io/) a pleasure, so I'd recommend using it.
+The Antergos website provides a [HOW TO for creating a Live USB](https://antergos.com/wiki/article/create-a-working-live-usb/) that I found helpful. Although it is straight forward to create the Live USB using Bash, I found using their recommended GUI for Linux called [Etcher](https://etcher.io/) a pleasure, so I'd recommend using it.
 
 ## Installation
 
 Fortunately, there are already a lot of good articles on the installation process, so I'm not going to create yet another installation guide -- I'm just going to point out some great articles and references to checkout (along with a little commentary here and there).
 
-* [How To Install Antergos Linux](https://itsfoss.com/install-antergos-linux/) -- this is one of the first sources I used to learn about how to perform linux installations period.  Nice concise article on how to install Antergos.
+* [How To Install Antergos Linux](https://itsfoss.com/install-antergos-linux/) -- this is one of the first sources I used to learn about how to perform linux installations period. Nice concise article on how to install Antergos.
 
 * [Antergos installation guide with screenshots](https://www.ostechnix.com/antergos-installation-guide-screenshots/) -- another good step-by-step installation guide.
 
-* [How to install Antergos 2016 in your PC](http://www.fosslinux.com/1266/how-to-install-antergos-2016-in-your-pc.htm) -- interesting installation guide that goes into more detail regarding creating partitions on your hard-drive prior to installing linux.  Check out [this article](http://www.fosslinux.com/1246/20-steps-to-prepare-your-pc-for-linux-installation.htm) for more details.  Note:  I did NOT follow this -- I'm unsure whether it is necessary to pre-create the partitions by hand, so I ignored this advice?
+* [How to install Antergos 2016 in your PC](http://www.fosslinux.com/1266/how-to-install-antergos-2016-in-your-pc.htm) -- interesting installation guide that goes into more detail regarding creating partitions on your hard-drive prior to installing linux. Check out [this article](http://www.fosslinux.com/1246/20-steps-to-prepare-your-pc-for-linux-installation.htm) for more details. Note: I did NOT follow this -- I'm unsure whether it is necessary to pre-create the partitions by hand, so I ignored this advice?
 
 * [Installing Antergos](https://antergos.com/wiki/install/installing-antergos-2/) -- the official installation page on the Antergos site.
 
-* [ArchLinux.org Installation guide](https://wiki.archlinux.org/index.php/Installation_guide) -- the official Arch Linux installation guide.  Since I'm installing Antergos, many of the items covered in this guide are not necessary/relevant for an Antergos install.  However, this article contains a wealth of information regarding the installation process, so, if you run into issues this is a great reference to checkout.
+* [ArchLinux.org Installation guide](https://wiki.archlinux.org/index.php/Installation_guide) -- the official Arch Linux installation guide. Since I'm installing Antergos, many of the items covered in this guide are not necessary/relevant for an Antergos install. However, this article contains a wealth of information regarding the installation process, so, if you run into issues this is a great reference to checkout.
 
 ## Post-install
 
@@ -50,18 +48,16 @@ After completing the installation of Antergos, I made a lot of changes in order 
 
 Immediately after completing the installation, I executed an update in order to ensure that all of the packages installed were up to date before proceeding with making any changes to the OS or adding any additional software.
 
-Immediately (more on this later), I recommend using the standard package manager called ```pacman``` to update the system.
+Immediately (more on this later), I recommend using the standard package manager called `pacman` to update the system.
 
 Here's how to do a **system update** via pacman in the Bash shell:
 
 ```shell
-
 # -Syu:
 # S is Synchronize packages
 # y is download a fresh copy of the master pkg db
 # u is upgrades all packages that are out of date
 sudo pacman -Syu
-
 ```
 
 #### [pacman](https://wiki.archlinux.org/index.php/pacman)
@@ -70,15 +66,15 @@ The package management command line application that comes with Antergos.
 
 ##### Common pacman commands
 
-* ```sudo pacman -Ss``` -- search for the given package
-* ```sudo pacman -Si``` -- retrieves information for the given package
-* ```sudo pacman -S``` -- installs the given package
-* ```sudo pacman -Sc``` -- removes all of the cached packages  from ```/var/cache/pacman/pkg```
-* ```sudo pacman -Q``` -- lists all of the installed packages
-* ```sudo pacman -Qs``` -- retrieves information for all of the installed packages
-* ```sudo pacman -Qi``` -- retrieves detailed information for all of the installed packages
-* ```sudo pacman -R``` -- removes the given package; leaves behind all dependencies
-* ```sudo pacman -Rs``` -- removes the given package and it's dependencies (not required by any other pkg)
+* `sudo pacman -Ss` -- search for the given package
+* `sudo pacman -Si` -- retrieves information for the given package
+* `sudo pacman -S` -- installs the given package
+* `sudo pacman -Sc` -- removes all of the cached packages from `/var/cache/pacman/pkg`
+* `sudo pacman -Q` -- lists all of the installed packages
+* `sudo pacman -Qs` -- retrieves information for all of the installed packages
+* `sudo pacman -Qi` -- retrieves detailed information for all of the installed packages
+* `sudo pacman -R` -- removes the given package; leaves behind all dependencies
+* `sudo pacman -Rs` -- removes the given package and it's dependencies (not required by any other pkg)
 
 #### [yaourt](https://archlinux.fr/yaourt-en)
 
@@ -90,7 +86,11 @@ yaourt, as a wrapper around pacman, provides the same arguments as above.
 
 pacaur is another AUR helper that I installed more recently to search for and install AUR packages.
 
-Just as yaourt is a wrapper around pacman, so too is pacaur a wrapper around pacman with additional support for AUR.  So, the same rules apply -- the same arguments above will work with pacaur as they do with pacman and yaourt.
+Just as yaourt is a wrapper around pacman, so too is pacaur a wrapper around pacman with additional support for AUR. So, the same rules apply -- the same arguments above will work with pacaur as they do with pacman and yaourt.
+
+#### **pacget**
+
+pacget is a a wrapper around pacaur that provides yaourt style search results, etc.
 
 ### GUI Settings
 
@@ -116,7 +116,7 @@ Here are the changes I made to Gnome via the **Tweaks** application:
 * Appearance:
   * Themes:
     * Applications: Numix-Frost
-    * Icons: Numix-Circle*
+    * Icons: Numix-Circle\*
 * Keyboard & Mouse
   * Mouse: Pointer Location on
 * Top Bar
@@ -150,13 +150,13 @@ I'm not going to cover the installation and configuration of this tool -- their 
 
 #### TL;DR
 
-* Install the following packages:  tlp, tlp-rdw
-* Install these additionally if you are on a Thinkpad:  acpi_call or tp_smapi
+* Install the following packages: tlp, tlp-rdw
+* Install these additionally if you are on a Thinkpad: acpi_call or tp_smapi
   * Note: you only need 1 of these packages -- depends upon your Thinkpad hardware.
   * I installed acpi_call as its the correct module for the Thinkpad T440p
-* ```sudo tlp start``` -- to start the tlp service without restart (if you followed the setup correctly it should automatically start when your system starts up the next time)
-* ```sudo tlp-stat -s``` -- to verify that tlp is working correctly
-* ```sudo tlp-stat``` -- produce the full report
+* `sudo tlp start` -- to start the tlp service without restart (if you followed the setup correctly it should automatically start when your system starts up the next time)
+* `sudo tlp-stat -s` -- to verify that tlp is working correctly
+* `sudo tlp-stat` -- produce the full report
 
 #### Antivirus
 
@@ -168,11 +168,11 @@ I don't currently have it setup to do automatic scans yet.
 
 Here are a few steps to keeping it up to date (definitions), etc.:
 
-* ```freshclam``` -- update virus definitions via the bash shell
-* ```systemctl start clamd.service``` -- start the service via the bash shell
-* ```curl https://www.eicar.org/download/eicar.com.txt | clamscan -``` -- test to ensure everything is setup correctly
-  * Expected output -- ```stdin: Eicar-Test-Signature FOUND```
-* ```clamtk``` -- launches the GUI for ClamAV
+* `freshclam` -- update virus definitions via the bash shell
+* `systemctl start clamd.service` -- start the service via the bash shell
+* `curl https://www.eicar.org/download/eicar.com.txt | clamscan -` -- test to ensure everything is setup correctly
+  * Expected output -- `stdin: Eicar-Test-Signature FOUND`
+* `clamtk` -- launches the GUI for ClamAV
 
 I've just scratched the surface here - it appears that you can include additional signatures from other repositories to broaden the number and type of signatures that ClamAV is aware of.
 
@@ -190,33 +190,29 @@ I've used a few different tools in order to get detailed information about thing
 See the Arch Linux official page on [systemd](https://wiki.archlinux.org/index.php/Systemd) for additional details.
 
 ```bash
-
 # command line tool for interrogating system information (systemd)
 systemctl
-
 ```
 
 Here are some common command line entries you can make using systemctl:
 
-* ```systemctl``` -- lists all of the "units"
-* ```systemctl status``` -- lists current status 
-* ```systemctl --failed``` -- lists any failures (units)
-* ```systemctl start some unit``` --  start / restart / stop a unit
-* ```systemctl restart some unit```
-* ```systemctl stop some unit```
-* ```systemctl reboot``` -- reboot the system 
-* ```systemctl poweroff``` -- power down the system
+* `systemctl` -- lists all of the "units"
+* `systemctl status` -- lists current status
+* `systemctl --failed` -- lists any failures (units)
+* `systemctl start some unit` -- start / restart / stop a unit
+* `systemctl restart some unit`
+* `systemctl stop some unit`
+* `systemctl reboot` -- reboot the system
+* `systemctl poweroff` -- power down the system
 
 ```bash
-
 # systemd logging system - called the journal
 journalctl
-
 ```
 
 ===NEED MORE HERE===
 
-There are lots of of other *ctl command line tools necessary for system administration.
+There are lots of of other \*ctl command line tools necessary for system administration.
 
 e.g. journalctl
 
@@ -224,7 +220,7 @@ e.g. journalctl
 
 #### Overall
 
-[General recommendations](https://wiki.archlinux.org/index.php/General_recommendations) -- this is the "bible" from the Arch Linux site.  I have to admit I've only read a few of the sections from this large repository of articles that cover a vast number of topics regarding Linux in general:  System administration, Package management, Power management (especially important for a laptop), Networking, Input devices, GUI/appearance, etc.
+[General recommendations](https://wiki.archlinux.org/index.php/General_recommendations) -- this is the "bible" from the Arch Linux site. I have to admit I've only read a few of the sections from this large repository of articles that cover a vast number of topics regarding Linux in general: System administration, Package management, Power management (especially important for a laptop), Networking, Input devices, GUI/appearance, etc.
 
 ### Software
 
@@ -241,18 +237,18 @@ Here, in no particular order, are the applications that I have installed.
 * **Chromium** -- open source browser from Google
 * **Chrome** -- closed source version of Chromium from Google
 * **Evolution** -- great email client
-  * ```esw``` -- used to connect Evolution to Office365/Exchange email servers
-  * Also made use of Online Accounts section in Gnome to setup Office365 account once ```esw``` was installed
+  * **evolution-esw** -- used to connect Evolution to Office365/Exchange email servers
+  * Also made use of Online Accounts section in Gnome to setup Office365 account once evolution-ews was installed
 * **ClamAV** -- good antivirus command line tool
 * **ClamTK** -- good GUI for ClamAV antivirus tool
 * **Etcher** -- great USB creation tool; great for burning a Live ISO to a USB flash drive
 * **Franz** -- interesting application for accessing several social media accounts via a single GUI
 * **FSearch** -- GUI file system search tool
-* **GVim** -- great GUI version of the venerable ```vim``` available in the Bash shell
+* **GVim** -- great GUI version of the venerable `vim` available in the Bash shell
 * **I-Nex** -- a GUI tool that provides detailed hardware information
 * **LibreOffice** -- strong, open source MS Office style suite of productivity software
 * **MegaSync(AUR)** -- Dropbox like cloud storage service available via a GUI
-* **Meld** -- great diff and merge GUI tool; I use this with git as my ```difftool``` and ```mergetool```
+* **Meld** -- great diff and merge GUI tool; I use this with git as my `difftool` and `mergetool`
 * **PSensors** -- similar to XSensors, a GUI for viewing the current temperatures of various components in the system
 * **SmartGit** -- great cross platform git GUI
 * **Spotify (AUR)** -- great streaming music GUI
@@ -263,30 +259,31 @@ Here, in no particular order, are the applications that I have installed.
 
 #### Tools
 
-These "tools", much like the applications above, are ones that I've installed.  I'm loosely defining "tools" to be applications that are primarily or solely accessed via the command line (Bash) and typically used for system administration-type tasks -- power management, bluetooth management, etc.
+These "tools", much like the applications above, are ones that I've installed. I'm loosely defining "tools" to be applications that are primarily or solely accessed via the command line (Bash) and typically used for system administration-type tasks -- power management, bluetooth management, etc.
 
-* **blueman-manager** -- good, additional bluetooth device management GUI
+* **blueman** -- good, additional bluetooth device management GUI
 * **brightness-controller** -- great little utility GUI for controlling your monitors' brightness
-* **dotnet-host, dotnet-runtime ver, dotnet-sdk-ver** -- .net core 2.0 libraries for writing .net core apps on linux
-* **ews** -- Exchange Web Services (evolution-ews) -- for accessing exchange / Office 365 servers from Evolution
+* **dotnet-sdk (2.1.4-1)** -- .net core 2.0 libraries for writing .net core apps on linux
+  * This will install dependencies: dotnet-host, dotnet-runtime
+* **evolution-ews** -- Exchange Web Services for accessing exchange / Office 365 servers from Evolution
 * **fish** -- colorized, auto-suggesting, etc. shell; nice to use in addition to Bash
 * **git** -- source control command line tools
 * **hardinfo** -- a GUI tool that provides detailed hardware information
 * **hwinfo** -- another hardware information command line tool
 * **JDK 8** -- ?? not sure but something on the system required this be installed ...??
-* **linux-headers** -- ?? installed in order to support the install of another package -- can't remember which one ??
-* **linux-api-headers** -- ?? installed in order to support the install of another package -- can't remember which one ??
+* **linux-api-headers** -- dependency?
 * **lm_sensors** -- monitoring library - provides access to things like CPU temp, fan speeds, etc.
 * **lshw** -- command line tool that lists detailed information about the hardware of your machine.
-* **NodeJS** -- stand alone JavaScript engine
+* **nodejs** -- stand alone JavaScript engine
 * **npm** -- node package manager - companion command line tool for managing node packages
-* **powertop** -- a tool to diagnose power consumption issues; power management
 * **tlp** -- power management for linux; helps optimize battery life, facilitates reporting on some hardware statistics
 * **iw** -- command line based wireless device configuration utility; used / installed at the same time as tlp
 * **smartmontools** -- used by tlp to emit SMART hard drive statistics(?)
 * **thermald** -- linux thermal daemon (Intel CPUs)
 * **xbacklight** -- command line utility for adjusting the back light (brightness) of your monitors
-* **x86_Energy_Perf_Policy** -- ??
+* **x86_Energy_Perf_Policy** -- ?
+* **pacaur** -- AUR Helper
+* **pacget** -- wrapper around pacaur; yaourt styled results
 
 #### Themes & Icons
 

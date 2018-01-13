@@ -113,15 +113,25 @@ Here are specific changes I made to Gnome via the **Settings** application:
 
 Here are the changes I made to Gnome via the **Tweaks** application:
 
-* Appearance:
-  * Themes:
+* Appearance
+  * Themes
     * Applications: Numix-Frost
+    * Alternative: Arc-Dark\*
     * Icons: Numix-Circle\*
+    * Shell: Arc-Dark\*
+* Extensions
+  * Cpu power manager\*\* -- control cpu profile, etc.
+  * Freon\*\* -- view cpu, hdd temperatures, fan speed, etc.
 * Keyboard & Mouse
   * Mouse: Pointer Location on
 * Top Bar
+
   * Battery Percentage on
   * Date on
+
+\* = note that these themes, icons need to be installed; these are not stock.
+
+\*\* = note that these extensions were added via the [gnome extensions website](https://extensions.gnome.org/). Follow installation/integration instructions as shown.
 
 #### Dash to Dock Panel
 

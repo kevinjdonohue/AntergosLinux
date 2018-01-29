@@ -18,7 +18,7 @@ In order to install Antergos on my Thinkpad, I first created and verified (md5) 
 
 In order to verify the ISO you downloaded before creating a Live USB, generate and compare the md5 of the ISO. Here's how to do that via a shell in Linux:
 
-```shell
+```bash
 md5sum your-iso-name.iso
 ```
 
@@ -52,7 +52,7 @@ Immediately (more on this later), I recommend using the standard package manager
 
 Here's how to do a **system update** via pacman in the Bash shell:
 
-```shell
+```bash
 # -Syu:
 # S is Synchronize packages
 # y is download a fresh copy of the master pkg db
@@ -82,13 +82,13 @@ yaourt is the AUR helper installed by default in Antergos, so it is a convenient
 
 yaourt, as a wrapper around pacman, provides the same arguments as above.
 
-#### **pacaur**
+#### [pacaur](https://github.com/rmarquis/pacaur)
 
 pacaur is another AUR helper that I installed more recently to search for and install AUR packages.
 
 Just as yaourt is a wrapper around pacman, so too is pacaur a wrapper around pacman with additional support for AUR. So, the same rules apply -- the same arguments above will work with pacaur as they do with pacman and yaourt.
 
-#### **pacget**
+#### [pacget](https://github.com/neurobin/pacget)
 
 pacget is a a wrapper around pacaur that provides yaourt style search results, etc.
 
@@ -99,12 +99,12 @@ pacget is a a wrapper around pacaur that provides yaourt style search results, e
 Here are specific changes I made to Gnome via the **Settings** application:
 
 * In Privacy:
-  * Turned on Location Services (?)
-  * Turned on Purge Trash & Temporary Files (?)
+  * Turned on Location Services
+  * Turned on Purge Trash & Temporary Files
 * In Devices:
-  * Keyboard: Added a custom Keyboard shortcut for launching a terminal (Shift + Ctrl + T)
+  * Keyboard: Added a custom Keyboard shortcut for launching a terminal (`Ctrl + Shift + T`)
   * Mouse & Touchpad: Turned off Natural Scrolling for the Touchpad
-  * Displays: Adjusted external monitors Resolution (2560 x 1440); I'm running 4k 28" Samsung monitors
+  * Displays: Adjusted external monitors Resolution (2560 x 1440); I'm running 2 4k 28" Samsung monitors
 * In Details:
   * Date & Time: Adjusted Time Format to AM/PM, modified Time Zone / enabled Automatic for Date & Time, Time Zone
   * Users: Selected an image for my user
@@ -125,7 +125,6 @@ Here are the changes I made to Gnome via the **Tweaks** application:
 * Keyboard & Mouse
   * Mouse: Pointer Location on
 * Top Bar
-
   * Battery Percentage on
   * Date on
 
@@ -199,10 +198,9 @@ I've used a few different tools in order to get detailed information about thing
 
 See the Arch Linux official page on [systemd](https://wiki.archlinux.org/index.php/Systemd) for additional details.
 
-```bash
-# command line tool for interrogating system information (systemd)
-systemctl
-```
+#### [systemctl](https://wiki.archlinux.org/index.php/Systemd)
+
+command line tool for interrogating system information (systemd)
 
 Here are some common command line entries you can make using systemctl:
 
@@ -215,22 +213,73 @@ Here are some common command line entries you can make using systemctl:
 * `systemctl reboot` -- reboot the system
 * `systemctl poweroff` -- power down the system
 
-```bash
-# systemd logging system - called the journal
-journalctl
-```
+#### [journalctl](https://wiki.archlinux.org/index.php/Systemd#Journal)
 
-===NEED MORE HERE===
+systemd logging system
+
+* `journalctl -p 3 -xb` -- lists all of the errors since the last boot
 
 There are lots of of other \*ctl command line tools necessary for system administration.
 
-e.g. journalctl
-
-===NEED MORE HERE===
+### {NEED MORE INFORMATION HERE}
 
 #### Overall
 
 [General recommendations](https://wiki.archlinux.org/index.php/General_recommendations) -- this is the "bible" from the Arch Linux site. I have to admit I've only read a few of the sections from this large repository of articles that cover a vast number of topics regarding Linux in general: System administration, Package management, Power management (especially important for a laptop), Networking, Input devices, GUI/appearance, etc.
+
+### Display Manager
+
+After running Antergos for a while, I noticed (after a linux update?), that the default Display Manager (DM) called [LightDM](https://wiki.archlinux.org/index.php/LightDM), was throwing nasty errors in the error log. The specific package called [lightdm-webkit2-greeter](https://aur.archlinux.org/packages/lightdm-webkit2-greeter/) was throwing errors (core dump). After reading some posts about LightDM and the webkit greeter specifically, I learned that on some systems the greeter has a tendancy to misbehave. Your mileage may vary here. If you run into issues with your system's greeter you may want read further...
+
+I performed the following diagnostic steps (from the LightDM page):
+
+```bash
+more /etc/lightdm/lightdm.conf
+```
+
+You should search the file for this title to determine what the system's current lightdm greeter is configured to use.
+
+```bash
+# lightdm.conf
+[Seat:*]
+...
+greeter-session-lightdm-(somegreeter)-greeter
+```
+
+In my case the system was configured to use the WebKit2 greeter.
+
+I did a little research and decided to use the GTK greeter instead, in order to attempt to eliminate the errors from the logs.
+
+Before going any further, I executed the following to see if any other greeters were installed on the system.
+
+```bash
+ls -lat /usr/share/xgreeters/
+
+# which yielded the following:
+
+lightdm-webkit2-greeter.desktop
+```
+
+So, I did the following to get the GTK greeter setup on my system in place of the webkit greeter.
+
+1. Searched for and installed lightdm-gtk-greeter
+1. Edited the lightdm.conf (see above) to set the gtk greeter as the default greeter.
+1. Searched for and installed the lightdm-gtk-greeter-settings configuration tool.
+1. Used lightdm-gtk-greeter-settings to customize the greeter.
+
+#### lightdm-gtk-greeter-settings
+
+I made the following configuration changes to the gtk greeter:
+
+Appearance Tab
+
+* Theme -- set the theme to match my current system theme (currently Adwaita Dark; see above for previously used theme details)
+* Icons -- same here I set the icons to match my current sytem icons (currently Numix-Circle)
+* Background Image -- I found and selected one of the Antergos background images from the `/usr/share/antergos/wallpapers/` folder.
+
+Panel Tab
+
+* Clock format -- set the format to one that is similar to my desktop format. `%a %b %d, %I:%M %p` => "Sun Jan 28, 05:27 PM"
 
 ### Software
 
@@ -254,18 +303,28 @@ Here, in no particular order, are the applications that I have installed.
 * **Etcher** -- great USB creation tool; great for burning a Live ISO to a USB flash drive
 * **Franz** -- interesting application for accessing several social media accounts via a single GUI
 * **FSearch** -- GUI file system search tool
+* **GParted** -- Graphical partitioning tool
 * **GVim** -- great GUI version of the venerable `vim` available in the Bash shell
 * **I-Nex** -- a GUI tool that provides detailed hardware information
+* **JetBrains Toolbox** -- GUI utility for downloading JetBrains products, e.g. Intellij, Web Storm, etc.
 * **LibreOffice** -- strong, open source MS Office style suite of productivity software
 * **MegaSync(AUR)** -- Dropbox like cloud storage service available via a GUI
 * **Meld** -- great diff and merge GUI tool; I use this with git as my `difftool` and `mergetool`
+* **Opera** -- open source browser from Opera
+* **Pomodoro** -- Pomodora timer -- Gnome compatible
 * **PSensors** -- similar to XSensors, a GUI for viewing the current temperatures of various components in the system
+* **Simplenote** -- Open source note taking application ala Evernote
+  * NOTE: I couldn't find an open source application that integrated with Evernote
 * **SmartGit** -- great cross platform git GUI
 * **Spotify (AUR)** -- great streaming music GUI
+* **Sublime Text 3** -- great all purpose text editor
 * **Stacer(AUR)** -- nice GUI utility for examining overall system performance
+* **Vivaldi** -- open source browser by the form CEO of Opera
 * **VLC** -- great media player
+* **Web Storm** -- installed via the JetBrains Toolbox (above) - a JavaScript IDE (NOTE: not open source - trial only)
 * **Xmind** -- nice mind mapping application
 * **XSensors** -- nice GUI for viewing the current temperatures of the core and CPU
+* **ZenMap** -- GUI for nmap port mapping utility
 
 #### Tools
 
@@ -276,11 +335,13 @@ These "tools", much like the applications above, are ones that I've installed. I
 * **dotnet-sdk (2.1.4-1)** -- .net core 2.0 libraries for writing .net core apps on linux
   * This will install dependencies: dotnet-host, dotnet-runtime
 * **evolution-ews** -- Exchange Web Services for accessing exchange / Office 365 servers from Evolution
+* **fing** -- network scanner
 * **fish** -- colorized, auto-suggesting, etc. shell; nice to use in addition to Bash
 * **git** -- source control command line tools
 * **hardinfo** -- a GUI tool that provides detailed hardware information
 * **hwinfo** -- another hardware information command line tool
 * **JDK 8** -- ?? not sure but something on the system required this be installed ...??
+* **LightDM-GTK-Settings** -- GUI configuration tool for the LightDM GTK3
 * **linux-api-headers** -- dependency?
 * **lm_sensors** -- monitoring library - provides access to things like CPU temp, fan speeds, etc.
 * **lshw** -- command line tool that lists detailed information about the hardware of your machine.

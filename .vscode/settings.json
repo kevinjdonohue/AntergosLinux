@@ -1,11 +1,13 @@
 {
     "cSpell.words": [
         "acpi",
+        "adwaita",
         "antergos",
         "blueman",
         "clamd",
         "clamscan",
         "clamtk",
+        "cpus",
         "deepin",
         "difftool",
         "eicar",
@@ -42,6 +44,7 @@
         "touchpad",
         "tp",
         "xbacklight",
+        "xgreeters",
         "xmind",
         "yaourt"
     ]

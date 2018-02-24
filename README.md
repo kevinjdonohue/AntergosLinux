@@ -92,6 +92,11 @@ Just as yaourt is a wrapper around pacman, so too is pacaur a wrapper around pac
 
 pacget is a a wrapper around pacaur that provides yaourt style search results, etc.
 
+```bash
+# equivalent to sudo pacman -Syu
+pacget -Syu
+```
+
 ### GUI Settings
 
 #### Settings Application
@@ -102,7 +107,7 @@ Here are specific changes I made to Gnome via the **Settings** application:
   * Turned on Location Services
   * Turned on Purge Trash & Temporary Files
 * In Devices:
-  * Keyboard: Added a custom Keyboard shortcut for launching a terminal (`Ctrl + Shift + T`)
+  * Keyboard: Added a custom Keyboard shortcut for launching a terminal (`Ctrl + Alt + T`)
   * Mouse & Touchpad: Turned off Natural Scrolling for the Touchpad
   * Displays: Adjusted external monitors Resolution (2560 x 1440); I'm running 2 4k 28" Samsung monitors
 * In Details:
@@ -116,12 +121,13 @@ Here are the changes I made to Gnome via the **Tweaks** application:
 * Appearance
   * Themes
     * Applications: Numix-Frost
-    * Alternative: Arc-Dark\*
+      * Alternative: Arc-Dark\*
     * Icons: Numix-Circle\*
     * Shell: Arc-Dark\*
 * Extensions
   * Cpu power manager\*\* -- control cpu profile, etc.
   * Freon\*\* -- view cpu, hdd temperatures, fan speed, etc.
+  * system-monitor -- view cpu, mem, etc. stats
 * Keyboard & Mouse
   * Mouse: Pointer Location on
 * Top Bar
@@ -141,7 +147,7 @@ Here are the changes I made to the **Dash to Dock** panel in Gnome:
   * Shrink the dash on
   * Show windows counter indicators (yellow dot)
   * Customize the dash color (similar to original)
-  * Customize opacity to 60%
+  * Customize opacity to 50%
 
 ### System Configuration
 
@@ -221,15 +227,13 @@ systemd logging system
 
 There are lots of of other \*ctl command line tools necessary for system administration.
 
-### {NEED MORE INFORMATION HERE}
-
 #### Overall
 
 [General recommendations](https://wiki.archlinux.org/index.php/General_recommendations) -- this is the "bible" from the Arch Linux site. I have to admit I've only read a few of the sections from this large repository of articles that cover a vast number of topics regarding Linux in general: System administration, Package management, Power management (especially important for a laptop), Networking, Input devices, GUI/appearance, etc.
 
 ### Display Manager
 
-After running Antergos for a while, I noticed (after a linux update?), that the default Display Manager (DM) called [LightDM](https://wiki.archlinux.org/index.php/LightDM), was throwing nasty errors in the error log. The specific package called [lightdm-webkit2-greeter](https://aur.archlinux.org/packages/lightdm-webkit2-greeter/) was throwing errors (core dump). After reading some posts about LightDM and the webkit greeter specifically, I learned that on some systems the greeter has a tendancy to misbehave. Your mileage may vary here. If you run into issues with your system's greeter you may want read further...
+After running Antergos for a while, I noticed (after a linux update?), that the default Display Manager (DM) called [LightDM](https://wiki.archlinux.org/index.php/LightDM), was throwing nasty errors in the error log. The specific package called [lightdm-webkit2-greeter](https://aur.archlinux.org/packages/lightdm-webkit2-greeter/) was throwing errors (core dump). After reading some posts about LightDM and the webkit greeter specifically, I learned that on some systems the greeter has a tendency to misbehave. Your mileage may vary here. If you run into issues with your system's greeter you may want read further...
 
 I performed the following diagnostic steps (from the LightDM page):
 
@@ -243,7 +247,7 @@ You should search the file for this title to determine what the system's current
 # lightdm.conf
 [Seat:*]
 ...
-greeter-session-lightdm-(somegreeter)-greeter
+greeter-session-lightdm-(some greeter)-greeter
 ```
 
 In my case the system was configured to use the WebKit2 greeter.
@@ -274,7 +278,7 @@ I made the following configuration changes to the gtk greeter:
 Appearance Tab
 
 * Theme -- set the theme to match my current system theme (currently Adwaita Dark; see above for previously used theme details)
-* Icons -- same here I set the icons to match my current sytem icons (currently Numix-Circle)
+* Icons -- same here I set the icons to match my current system icons (currently Numix-Circle)
 * Background Image -- I found and selected one of the Antergos background images from the `/usr/share/antergos/wallpapers/` folder.
 
 Panel Tab
@@ -290,7 +294,8 @@ Here is a list of all of the software packages, from system tools to audio and v
 Here, in no particular order, are the applications that I have installed.
 
 * **Atom** -- great all purpose text editor
-* **Visual Studio Code(AUR)** -- great JavaScript editor/all purpose text editor
+* **Visual Studio Code** -- great JavaScript editor/all purpose text editor
+  * As a tweak to Code, I've installed `Fira Code` and enabled font ligatures in user settings
   * As a developer who uses Windows by day, and MacOS and Linux at home, it's nice to have a cross platform editor that more or less behaves the same across all three environments.
 * **BleachBit** -- tool for securely removing files, freeing up disk space, etc.
 * **Chromium** -- open source browser from Google
@@ -308,17 +313,17 @@ Here, in no particular order, are the applications that I have installed.
 * **I-Nex** -- a GUI tool that provides detailed hardware information
 * **JetBrains Toolbox** -- GUI utility for downloading JetBrains products, e.g. Intellij, Web Storm, etc.
 * **LibreOffice** -- strong, open source MS Office style suite of productivity software
-* **MegaSync(AUR)** -- Dropbox like cloud storage service available via a GUI
+* **MegaSync** -- Dropbox like cloud storage service available via a GUI
 * **Meld** -- great diff and merge GUI tool; I use this with git as my `difftool` and `mergetool`
 * **Opera** -- open source browser from Opera
-* **Pomodoro** -- Pomodora timer -- Gnome compatible
+* **Pomodoro** -- Pomodoro timer -- Gnome compatible
 * **PSensors** -- similar to XSensors, a GUI for viewing the current temperatures of various components in the system
 * **Simplenote** -- Open source note taking application ala Evernote
   * NOTE: I couldn't find an open source application that integrated with Evernote
 * **SmartGit** -- great cross platform git GUI
-* **Spotify (AUR)** -- great streaming music GUI
+* **Spotify** -- great streaming music GUI
 * **Sublime Text 3** -- great all purpose text editor
-* **Stacer(AUR)** -- nice GUI utility for examining overall system performance
+* **Stacer** -- nice GUI utility for examining overall system performance
 * **Vivaldi** -- open source browser by the form CEO of Opera
 * **VLC** -- great media player
 * **Web Storm** -- installed via the JetBrains Toolbox (above) - a JavaScript IDE (NOTE: not open source - trial only)
@@ -332,11 +337,13 @@ These "tools", much like the applications above, are ones that I've installed. I
 
 * **blueman** -- good, additional bluetooth device management GUI
 * **brightness-controller** -- great little utility GUI for controlling your monitors' brightness
-* **dotnet-sdk (2.1.4-1)** -- .net core 2.0 libraries for writing .net core apps on linux
+* **dotnet-sdk** -- .net core 2.0 libraries for writing .net core apps on linux
   * This will install dependencies: dotnet-host, dotnet-runtime
 * **evolution-ews** -- Exchange Web Services for accessing exchange / Office 365 servers from Evolution
 * **fing** -- network scanner
 * **fish** -- colorized, auto-suggesting, etc. shell; nice to use in addition to Bash
+  * In addition to fish, installing oh my fish (OMF) allows you to install themes, etc.
+  * I've installed the `shellder` theme that is ideal for GIT
 * **git** -- source control command line tools
 * **hardinfo** -- a GUI tool that provides detailed hardware information
 * **hwinfo** -- another hardware information command line tool
@@ -355,12 +362,14 @@ These "tools", much like the applications above, are ones that I've installed. I
 * **x86_Energy_Perf_Policy** -- ?
 * **pacaur** -- AUR Helper
 * **pacget** -- wrapper around pacaur; yaourt styled results
+* **Fira Code** -- nice font for programming -- allows ligatures
+* **Albert-Lite** -- great launcher ala spotlight in macOS; light version doesn't have as many funky dependencies
+* **INXI** -- utility for reviewing system properties; provides suggestions
 
 #### Themes & Icons
 
 I installed the following icons and wallpapers in order to jazz up my desktop a bit.
 
 * **numix-icon-theme-circle**
-* **antergos-wallpapers**
 * **antergos-wallpapers-deepin**
 * **antergos-wallpapers-extra**

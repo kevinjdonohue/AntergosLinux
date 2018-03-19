@@ -1,6 +1,6 @@
 # An guide for installing and configuring Antergos Linux
 
-## Introduction
+## INTRODUCTION
 
 I'm going to use this README to capture the steps I took to get Antergos (re)installed successfully on my [Lenovo Thinkpad T440p](https://www.thinkwiki.org/wiki/Category:T440p).
 
@@ -8,11 +8,11 @@ As a novice to installing and configuring Linux, I thought I'd capture my experi
 
 Although I'm referencing Antergos Linux specifically in this guide, my guess is that many of the steps, tools, etc. may be relevant to installing other distributions.
 
-## Preparing for the install
+## PREPARING FOR INSTALL
 
-1. Download Live ISO
-1. Verify md5 of ISO
-1. Use Bash or Etcher to create a boot-able USB from the ISO
+1.  Download Live ISO
+1.  Verify md5 of ISO
+1.  Use Bash or Etcher to create a boot-able USB from the ISO
 
 In order to install Antergos on my Thinkpad, I first created and verified (md5) a fresh copy of the [Antergos Live ISO](https://antergos.com/download/antergos-live-iso/) on a USB flash drive.
 
@@ -26,7 +26,7 @@ md5sum your-iso-name.iso
 
 The Antergos website provides a [HOW TO for creating a Live USB](https://antergos.com/wiki/article/create-a-working-live-usb/) that I found helpful. Although it is straight forward to create the Live USB using Bash, I found using their recommended GUI for Linux called [Etcher](https://etcher.io/) a pleasure, so I'd recommend using it.
 
-## Installation
+## INSTALLATION
 
 Fortunately, there are already a lot of good articles on the installation process, so I'm not going to create yet another installation guide -- I'm just going to point out some great articles and references to checkout (along with a little commentary here and there).
 
@@ -40,7 +40,7 @@ Fortunately, there are already a lot of good articles on the installation proces
 
 * [ArchLinux.org Installation guide](https://wiki.archlinux.org/index.php/Installation_guide) -- the official Arch Linux installation guide. Since I'm installing Antergos, many of the items covered in this guide are not necessary/relevant for an Antergos install. However, this article contains a wealth of information regarding the installation process, so, if you run into issues this is a great reference to checkout.
 
-## Post-install
+## POST INSTALL
 
 After completing the installation of Antergos, I made a lot of changes in order to optimize the system.
 
@@ -60,11 +60,11 @@ Here's how to do a **system update** via pacman in the Bash shell:
 sudo pacman -Syu
 ```
 
-#### [pacman](https://wiki.archlinux.org/index.php/pacman)
+### [pacman](https://wiki.archlinux.org/index.php/pacman)
 
 The package management command line application that comes with Antergos.
 
-##### Common pacman commands
+#### Common pacman commands
 
 * `sudo pacman -Ss` -- search for the given package
 * `sudo pacman -Si` -- retrieves information for the given package
@@ -76,19 +76,19 @@ The package management command line application that comes with Antergos.
 * `sudo pacman -R` -- removes the given package; leaves behind all dependencies
 * `sudo pacman -Rs` -- removes the given package and it's dependencies (not required by any other pkg)
 
-#### [yaourt](https://archlinux.fr/yaourt-en)
+### [yaourt](https://archlinux.fr/yaourt-en)
 
 yaourt is the AUR helper installed by default in Antergos, so it is a convenient method, besides using the Software Install GUI, to search for and install AUR packages.
 
 yaourt, as a wrapper around pacman, provides the same arguments as above.
 
-#### [pacaur](https://github.com/rmarquis/pacaur)
+### [pacaur](https://github.com/rmarquis/pacaur)
 
 pacaur is another AUR helper that I installed more recently to search for and install AUR packages.
 
 Just as yaourt is a wrapper around pacman, so too is pacaur a wrapper around pacman with additional support for AUR. So, the same rules apply -- the same arguments above will work with pacaur as they do with pacman and yaourt.
 
-#### [pacget](https://github.com/neurobin/pacget)
+### [pacget](https://github.com/neurobin/pacget)
 
 pacget is a a wrapper around pacaur that provides yaourt style search results, etc.
 
@@ -99,38 +99,41 @@ pacget -Syu
 
 ### GUI Settings
 
-#### Settings Application
+### Settings Application
 
 Here are specific changes I made to Gnome via the **Settings** application:
 
-* In Privacy:
+* In **Privacy**
   * Turned on Location Services
   * Turned on Purge Trash & Temporary Files
-* In Devices:
+* In **Devices**
   * Keyboard: Added a custom Keyboard shortcut for launching a terminal (`Ctrl + Alt + T`)
   * Mouse & Touchpad: Turned off Natural Scrolling for the Touchpad
   * Displays: Adjusted external monitors Resolution (2560 x 1440); I'm running 2 4k 28" Samsung monitors
-* In Details:
+* In **Details**
   * Date & Time: Adjusted Time Format to AM/PM, modified Time Zone / enabled Automatic for Date & Time, Time Zone
   * Users: Selected an image for my user
 
-#### Tweaks Application
+### Gnome Tweaks Application
 
-Here are the changes I made to Gnome via the **Tweaks** application:
+Here are the changes I made to Gnome via the **GNOME TWEAKS** application:
 
-* Appearance
+* **Appearance**
   * Themes
     * Applications: Numix-Frost
       * Alternative: Arc-Dark\*
     * Icons: Numix-Circle\*
     * Shell: Arc-Dark\*
-* Extensions
-  * Cpu power manager\*\* -- control cpu profile, etc.
-  * Freon\*\* -- view cpu, hdd temperatures, fan speed, etc.
-  * system-monitor -- view cpu, mem, etc. stats
-* Keyboard & Mouse
+* **Extensions\*\***
+  * `Cpu power manager` -- control cpu profile, etc.
+  * `Freon` -- view cpu, hdd temperatures, fan speed, etc.
+  * `system-monitor` -- view cpu, mem, etc. stats
+  * `AlternateTab` -- slightly improved alt-tab behavior that respects actual windows vs applications
+  * `Multi Monitors Add-On` -- great way to take advantage of desktops on multiple monitors
+  * `Trash` -- you can view and empty the trash from the top panel (instead of a desktop icon)
+* **Keyboard & Mouse**
   * Mouse: Pointer Location on
-* Top Bar
+* **Top Bar**
   * Battery Percentage on
   * Date on
 
@@ -138,7 +141,7 @@ Here are the changes I made to Gnome via the **Tweaks** application:
 
 \*\* = note that these extensions were added via the [gnome extensions website](https://extensions.gnome.org/). Follow installation/integration instructions as shown.
 
-#### Dash to Dock Panel
+#### `Dash to Dock` Extension (Panel)
 
 Here are the changes I made to the **Dash to Dock** panel in Gnome:
 
@@ -195,10 +198,10 @@ I've just scratched the surface here - it appears that you can include additiona
 
 I've used a few different tools in order to get detailed information about things like the hard drive, memory, battery, etc..
 
-* lshw -- command line tool that lists detailed information about the hardware of your machine.
-* hardinfo -- a GUI tool that provides detailed hardware information.
-* i-nex -- yet another GUI tool that provides detailed hardware information.
-* hwinfo -- another hardware information command line tool
+* `lshw` -- command line tool that lists detailed information about the hardware of your machine.
+* `hardinfo` -- a GUI tool that provides detailed hardware information.
+* `i-nex` -- yet another GUI tool that provides detailed hardware information.
+* `hwinfo` -- another hardware information command line tool
 
 #### System information
 
@@ -266,10 +269,10 @@ lightdm-webkit2-greeter.desktop
 
 So, I did the following to get the GTK greeter setup on my system in place of the webkit greeter.
 
-1. Searched for and installed lightdm-gtk-greeter
-1. Edited the lightdm.conf (see above) to set the gtk greeter as the default greeter.
-1. Searched for and installed the lightdm-gtk-greeter-settings configuration tool.
-1. Used lightdm-gtk-greeter-settings to customize the greeter.
+1.  Searched for and installed lightdm-gtk-greeter
+1.  Edited the lightdm.conf (see above) to set the gtk greeter as the default greeter.
+1.  Searched for and installed the lightdm-gtk-greeter-settings configuration tool.
+1.  Used lightdm-gtk-greeter-settings to customize the greeter.
 
 #### lightdm-gtk-greeter-settings
 
@@ -289,44 +292,43 @@ Panel Tab
 
 Here is a list of all of the software packages, from system tools to audio and video applications, that I've installed on Antergos.
 
-#### Applications
+#### Frequently Used / Installed Applications
 
-Here, in no particular order, are the applications that I have installed.
-
-* **Atom** -- great all purpose text editor
 * **Visual Studio Code** -- great JavaScript editor/all purpose text editor
   * As a tweak to Code, I've installed `Fira Code` and enabled font ligatures in user settings
-  * As a developer who uses Windows by day, and MacOS and Linux at home, it's nice to have a cross platform editor that more or less behaves the same across all three environments.
-* **BleachBit** -- tool for securely removing files, freeing up disk space, etc.
+  * Another convenience I add in order to create a consistent experience I install the [Settings Sync](https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync) extension and then download my configuration stored a a [gist](https://gist.github.com/kevinjdonohue/e2db0e19a216d11cee8da4748a341fc1) out on GitHub.
 * **Chromium** -- open source browser from Google
 * **Chrome** -- closed source version of Chromium from Google
 * **Evolution** -- great email client
   * **evolution-esw** -- used to connect Evolution to Office365/Exchange email servers
   * Also made use of Online Accounts section in Gnome to setup Office365 account once evolution-ews was installed
+* **Etcher** -- great USB creation tool; great for burning a Live ISO to a USB flash drive
+* **Meld** -- great diff and merge GUI tool; I use this with git as my `difftool` and `mergetool`
+* **Spotify** -- great streaming music GUI
+* **VLC** -- great media player
+
+#### Nice to have Applications
+
+* **Atom** -- great all purpose text editor
+* **BleachBit** -- tool for securely removing files, freeing up disk space, etc.
 * **ClamAV** -- good antivirus command line tool
 * **ClamTK** -- good GUI for ClamAV antivirus tool
-* **Etcher** -- great USB creation tool; great for burning a Live ISO to a USB flash drive
 * **Franz** -- interesting application for accessing several social media accounts via a single GUI
 * **FSearch** -- GUI file system search tool
 * **GParted** -- Graphical partitioning tool
 * **GVim** -- great GUI version of the venerable `vim` available in the Bash shell
 * **I-Nex** -- a GUI tool that provides detailed hardware information
-* **JetBrains Toolbox** -- GUI utility for downloading JetBrains products, e.g. Intellij, Web Storm, etc.
 * **LibreOffice** -- strong, open source MS Office style suite of productivity software
 * **MegaSync** -- Dropbox like cloud storage service available via a GUI
-* **Meld** -- great diff and merge GUI tool; I use this with git as my `difftool` and `mergetool`
 * **Opera** -- open source browser from Opera
 * **Pomodoro** -- Pomodoro timer -- Gnome compatible
 * **PSensors** -- similar to XSensors, a GUI for viewing the current temperatures of various components in the system
 * **Simplenote** -- Open source note taking application ala Evernote
   * NOTE: I couldn't find an open source application that integrated with Evernote
 * **SmartGit** -- great cross platform git GUI
-* **Spotify** -- great streaming music GUI
 * **Sublime Text 3** -- great all purpose text editor
 * **Stacer** -- nice GUI utility for examining overall system performance
 * **Vivaldi** -- open source browser by the form CEO of Opera
-* **VLC** -- great media player
-* **Web Storm** -- installed via the JetBrains Toolbox (above) - a JavaScript IDE (NOTE: not open source - trial only)
 * **Xmind** -- nice mind mapping application
 * **XSensors** -- nice GUI for viewing the current temperatures of the core and CPU
 * **ZenMap** -- GUI for nmap port mapping utility
@@ -363,7 +365,7 @@ These "tools", much like the applications above, are ones that I've installed. I
 * **pacaur** -- AUR Helper
 * **pacget** -- wrapper around pacaur; yaourt styled results
 * **Fira Code** -- nice font for programming -- allows ligatures
-* **Albert-Lite** -- great launcher ala spotlight in macOS; light version doesn't have as many funky dependencies
+* **Albert/Albert-Lite** -- great launcher ala spotlight in macOS; light version doesn't have as many funky dependencies
 * **INXI** -- utility for reviewing system properties; provides suggestions
 
 #### Themes & Icons

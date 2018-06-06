@@ -75,6 +75,8 @@ The package management command line application that comes with Antergos.
 * `sudo pacman -Qi` -- retrieves detailed information for all of the installed packages
 * `sudo pacman -R` -- removes the given package; leaves behind all dependencies
 * `sudo pacman -Rs` -- removes the given package and it's dependencies (not required by any other pkg)
+* `sudo pacman -Qqdt` -- lists all of the unused packages (orphans)
+* `sudo pacman -Rns $(pacman -Qqdt)` -- recursively removes all of the unused packages (orphans)
 
 ### [yaourt](https://archlinux.fr/yaourt-en)
 
